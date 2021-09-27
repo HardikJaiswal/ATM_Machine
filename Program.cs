@@ -44,7 +44,7 @@ namespace Practise
                 while (true)
                 {
                     bool flag= false;
-                    Console.WriteLine("\n\nWelcome back " + current.name);
+                    Console.WriteLine("\n\nWelcome back " + current.name +"\t\t Account Number:" + current.accNum);
                     Console.WriteLine("What would you like to do:\n 1.Deposit amount\n 2.Withdraw Amount\n 3.Transfer Amount");
                     Console.WriteLine(" 4.Print Transaction History\n 5. Log out");
                     temp = Convert.ToInt16(Console.ReadLine());

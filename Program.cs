@@ -1,5 +1,6 @@
-﻿using Practise.Service;
-namespace Practise
+﻿
+
+namespace Practise.CLI
 {
     class Program
     {

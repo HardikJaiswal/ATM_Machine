@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using BankApplication.Models;
 using System.Collections.Generic;
 
@@ -6,7 +6,7 @@ namespace BankApplication.Services
 {
     public class OperationalServices 
     {
-        Bank CurrentBank;
+        Bank CurrentBank { get; set; }
 
         List<Bank> BankList = new List<Bank>();
         public string GetUserAccount(int AccountNumber)
@@ -58,11 +58,12 @@ namespace BankApplication.Services
         }
         private string WriteHistory(int Amount, string Message, Account user)
         {
-            string ForBank = "\t\t Account: " + user.AccountNumber;
-            string newTransaction =  "\t Amount " + Message
-                + "\t\t Transaction Amount: Rs." + Amount + "\t\t Current Balance: Rs." + user.Amount;
-            user.Transhistory.Add(DateTime.Now.ToString() + newTransaction);
-            return DateTime.Now.ToString() + ForBank + newTransaction;
+            string TransactionID = $"TXN{this.CurrentBank.BankID}{user.AccountID}{DateTime.Today}";
+            string ForBank = $"\t\t Account: {user.AccountNumber}";
+            string newTransaction =  $"\t Amount {Message} \t\t Transaction Amount:" +
+                $" Rs.{ Amount } \t\t Current Balance: Rs. { user.Amount}";
+            user.Transhistory.Add($"{DateTime.Now} {TransactionID} {newTransaction}");
+            return DateTime.Now.ToString()+ TransactionID + ForBank + newTransaction;
         }
         public void MoneyWithdrawl(int AccountNumber,int MoneyToBeWithdrawl)
         {
